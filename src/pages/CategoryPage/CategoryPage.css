@@ -1,0 +1,25 @@
+
+.category-title {
+  text-align: center;
+  font-size: 3rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.drinks-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5rem;
+  margin: 4.0625rem 1rem;
+}
+.drinks-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  gap: 1.25rem;
+  min-height: 26.8125rem;
+}

@@ -1,0 +1,51 @@
+.drink-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0 1.5rem;
+  min-width: 34.0625rem;
+  max-height: 4.09375rem;
+  
+}
+
+.drink-title {
+  text-align: left;
+  
+}
+
+.drink-price {
+  font-family: "Montserrat", sans-serif;
+  background: #f3a500;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 11.5rem;
+  height: 4.0925rem;
+}
+
+.drink-counter {
+  min-width: 11.5rem;
+  height: 4.0925rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.drink-counter button {
+
+  width: 2.5rem;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: 4px 8px;
+  font-size:2rem; 
+  cursor: pointer;
+}

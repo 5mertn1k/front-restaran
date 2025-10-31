@@ -1,0 +1,65 @@
+.header {
+  background: #161B21;
+  padding: 1rem 2rem;
+  height: 2.75rem;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; 
+  color: #f5f5f5;
+  font-family: "Montserrat", sans-serif;
+}
+.logo {
+  grid-column: 1;
+  font-weight: 400;
+  font-size: 2rem; 
+}
+.logo a { color: #f5f5f5; text-decoration: none; }
+
+.menu {
+  grid-column: 2; 
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.menu a {
+  text-decoration: none;      
+  color: #f5f5f5;                        
+  transition: color 0.2s ease;
+}
+
+.menu a:hover {
+  color: #e0b45c; 
+}
+
+.menu a.active {
+  color: #e0b45c; 
+  font-weight: 400;
+}
+
+.profile-section {
+  grid-column: 3; 
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.profile-link {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-decoration: none;
+}
+.profile-section a:hover {
+  color: #e0b45c; 
+}
+.profile-section a { color: #f5f5f5; text-decoration: none; }
+.profile-section a.active {
+  color: #e0b45c; 
+  font-weight: 400;
+}
+

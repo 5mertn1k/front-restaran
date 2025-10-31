@@ -1,0 +1,30 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background: #212121;
+  padding: 1.75rem 1rem;
+  background: #13161a;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  flex-shrink: 0;
+  max-height: 8.5625rem;
+}
+.fot{
+  font-size: 1.5rem;
+  font-weight: 400;
+  
+}
+.tof{
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.footer a {
+  color: #f5f5f5;     
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #e0b45c;     
+}

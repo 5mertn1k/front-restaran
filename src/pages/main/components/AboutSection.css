@@ -1,0 +1,32 @@
+.about {
+  display: flex;
+  padding: 2rem 2rem;
+  background: #161b21; 
+  color: #f5f5f5;
+}
+
+.about-text {
+  flex: 1.5;
+}
+
+.about-text h3 {
+  text-align: center;
+  margin-right: 5rem;
+  font-size: 3rem;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+}
+
+.about-text p {
+  font-size: 2.25rem;
+  font-family: "Montserrat", sans-serif;
+}
+.about-image{
+    flex: 1.2;
+}
+.about-image img {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  margin-top: 6rem;
+}

@@ -1,0 +1,70 @@
+.dish-card {
+  background: #161b21;
+  padding: 0 5rem; 
+  display: grid;
+  grid-template-columns: 1fr 0.4fr; 
+  color: white;
+  min-height: 6.25rem;
+}
+
+.dish-info h3 {
+  font-size: 2.25rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.dish-info p {
+  font-size: 2.25rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  max-width: 78.125rem;
+}
+.call{
+  font-size: 2.25rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+
+}
+
+.price-btn{
+  font-family: "Montserrat", sans-serif;
+  background:#f3a500; 
+  color:#ffffff; 
+  font-weight:600; 
+  width: 17.5625rem;
+  height: 6.25rem;
+  padding:14px 24px; 
+  font-size:3rem; 
+  cursor:pointer;
+  border: none;
+}
+
+.dish-actions{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+ 
+  
+}
+.counter{
+  width: 17.5625rem;
+  height: 6.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.counter button {
+  width: 2.5rem;
+  background: none;
+  border: 1px solid white;
+  color: white;
+  padding: 4px 8px;
+  font-size:2rem; 
+  cursor: pointer;
+
+}
+.count{
+  font-size:2rem; 
+}
+
