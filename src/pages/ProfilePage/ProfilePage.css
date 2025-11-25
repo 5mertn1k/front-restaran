@@ -1,0 +1,75 @@
+.profile-loading {
+  color: white;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 5rem;
+  min-height: 75vh;
+}
+
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 6.6rem;
+  margin-bottom: 5rem;
+  color: white;
+  padding: 1.5rem 2.25rem;
+  
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #161b21;
+  padding: 0.5rem 2.25rem;
+  border-radius: 0.8rem;
+  width: 31.625rem;
+  height: 34.5rem;
+  gap: 1.25rem;
+  border: 0.1rem solid #b8860b;
+  text-align: center;
+}
+
+.profile-title {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  margin-bottom: 0.25rem;
+}
+
+.profile-card input {
+  width: 28.375rem;
+  height:  3.1875rem;
+  padding: 0 1rem;
+  border: 0.1rem solid #ffffff;
+  background: #161b21;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+.pravoknopka {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.profile-logout:hover {
+  background: #ffb732;
+}
+.profile-logout{
+  background: #f0a500;
+  color: rgb(255, 255, 255);
+  border: none;
+  width: 13.625rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition:  0.3s;
+  margin-right: 1rem;
+}

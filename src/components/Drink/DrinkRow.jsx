@@ -1,23 +1,18 @@
 import { useState, useEffect } from "react";
 import "./DrinkRow.css";
 
-export default function DrinkRow({ drink, onChange }) {
-  const [count, setCount] = useState(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart") || "{}");
-    return savedCart[drink.id] || 0;
-  });
+export default function DrinkRow({ drink, quantity, onChange }) {
+  const [count, setCount] = useState(quantity);
 
+  // если quantity изменилось извне — обновляем локальный count
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart") || "{}");
-    if (count > 0) {
-      savedCart[drink.id] = count;
-    } else {
-      delete savedCart[drink.id];
-    }
-    localStorage.setItem("cart", JSON.stringify(savedCart));
+    setCount(quantity);
+  }, [quantity]);
 
+  // отправляем изменения наверх
+  useEffect(() => {
     if (onChange) onChange(drink.id, count);
-  }, [count, drink.id, onChange]);
+  }, [count]);
 
   return (
     <div className="drink-row">

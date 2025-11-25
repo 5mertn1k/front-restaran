@@ -1,5 +1,7 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import "./Header.css";
+import userprofile from "../../assets/User.svg"; 
+import userprofile1 from "../../assets/User1.svg"; 
 
 export default function Header() {
   const navigate = useNavigate();
@@ -41,17 +43,28 @@ export default function Header() {
 
         <div className="profile-section">
           {user ? (
-            <div className="profile-info">
-              <NavLink to="/profile" className="profile-link">
-                <span role="img" aria-label="user">👤</span> {user.firstName}
-              </NavLink>
-            </div>
+            <NavLink 
+              to="/profile"
+              className={({ isActive }) => 
+                isActive ? "profile-link active" : "profile-link"
+              }
+            >
+              <span className="profile-icon"></span>
+              {user.firstName}
+            </NavLink>
           ) : (
-            <NavLink to="/login" className={({ isActive }) => (isActive ? "active" : "")}>
-              <span role="img" aria-label="user">👤</span> Профиль
+            <NavLink 
+              to="/login"
+              className={({ isActive }) => 
+                isActive ? "profile-link active" : "profile-link"
+              }
+            >
+              <span className="profile-icon"></span>
+              Профиль
             </NavLink>
           )}
         </div>
+
       </nav>
     </header>
   );

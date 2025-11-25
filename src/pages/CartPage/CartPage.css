@@ -1,0 +1,116 @@
+.cart-page {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0rem;
+  color: white;
+  background-color: #161b21;
+  min-height: 70vh;
+}
+.pusto{
+  font-size: 3rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-align: center;
+}
+.cart-clear-btn { 
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0rem 10rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+.rightside{
+    display: flex;
+    align-items: center;
+    gap: 8rem;
+}
+.cart-item-price {
+  font-size: 2.25rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.cart-quantity-controls {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid #888;
+  border-radius: 1rem;
+}
+
+.cart-quantity-controls button {
+  background: none;
+  color: white;
+  font-size: 3rem;
+  border: none;
+  cursor: pointer;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.cena{
+    font-size: 2.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin:0 10rem; 
+}
+.itog{
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    gap: 1rem;
+}
+
+.cart-total strong {
+  color: #ffcc00;
+}
+
+.cart-checkout-btn {
+  max-width: 28.3rem;  
+  min-height: 5.9375rem;
+  background-color: #ffb300;
+  color: rgb(255, 255, 255);
+  padding: 0 10px;
+  border: none;
+  cursor: pointer;
+  transition:  0.3s;
+  font-size: 2rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+
+.cart-checkout-btn:hover {
+  background-color: #ffcc00;
+}
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  flex-grow: 1;
+}
+
+.cart-items {
+  flex-grow: 1;
+}

@@ -1,34 +1,19 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./CartPage.css";
+import { getSessionId } from "../../utils/session";
 
 export default function CartPage() {
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
+  const sessionId = getSessionId();
 
-  let user = JSON.parse(localStorage.getItem("user"));
-  let sessionId;
-
-  if (user) {
-    // Авторизованный пользователь
-    sessionId = user.username;
-  } else {
-    // Неавторизованный — генерируем (или берём уже созданный) гостевой ID
-    const guestId = localStorage.getItem("guestId");
-    if (guestId) {
-      sessionId = guestId;
-    } else {
-      const newGuestId = "guest-" + Math.random().toString(36).substring(2, 9);
-      localStorage.setItem("guestId", newGuestId);
-      sessionId = newGuestId;
-    }
-  }
-
-
-  // загрузка корзины с бэка
   const loadCart = async () => {
     try {
       const res = await fetch(`http://localhost:8080/api/cart/${sessionId}`);
       if (!res.ok) throw new Error("Ошибка загрузки корзины");
+
       const data = await res.json();
-      console.log("Корзина с сервера:", data);
       setItems(data);
     } catch (err) {
       console.error("Ошибка загрузки корзины:", err);
@@ -39,101 +24,80 @@ export default function CartPage() {
     loadCart();
   }, []);
 
- const updateQuantity = async (dishId, newQty) => {
-  try {
-    if (newQty < 1) {
-      await fetch(`http://localhost:8080/api/cart/${sessionId}/remove/${dishId}`, {
-        method: "DELETE",
-      });
-      // 🧹 удаляем из localStorage
-      const savedCart = JSON.parse(localStorage.getItem("cart") || "{}");
-      delete savedCart[dishId];
-      localStorage.setItem("cart", JSON.stringify(savedCart));
-    } else {
-      await fetch(`http://localhost:8080/api/cart/${sessionId}/set?dishId=${dishId}&quantity=${newQty}`, {
-        method: "POST",
-      });
-      // ✏️ обновляем localStorage
-      const savedCart = JSON.parse(localStorage.getItem("cart") || "{}");
-      savedCart[dishId] = newQty;
-      localStorage.setItem("cart", JSON.stringify(savedCart));
-    }
-    loadCart();
-  } catch (e) {
-    console.error("Ошибка обновления корзины:", e);
-  }
-};
+  const updateQuantity = async (dishId, newQty) => {
+    try {
+      if (newQty < 1) {
+        await fetch(`http://localhost:8080/api/cart/${sessionId}/remove/${dishId}`, {
+          method: "DELETE",
+        });
+      } else {
+        await fetch(
+          `http://localhost:8080/api/cart/${sessionId}/set?dishId=${dishId}&quantity=${newQty}`,
+          { method: "POST" }
+        );
+      }
 
-  // очистить корзину
+      loadCart();
+    } catch (e) {
+      console.error("Ошибка обновления корзины:", e);
+    }
+  };
+
   const clearCart = async () => {
     try {
       await fetch(`http://localhost:8080/api/cart/${sessionId}/clear`, {
         method: "DELETE",
       });
 
-      localStorage.removeItem("cart"); // чистим localStorage
-      setItems([]); // очищаем фронтовый стейт
+      setItems([]);
     } catch (e) {
       console.error("Ошибка очистки корзины:", e);
     }
   };
 
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
   return (
-    <div className="cart-page" style={{ padding: "20px", color: "white" }}>
-      <h1>Корзина</h1>
-
+    <div className="cart-page">
       {items.length === 0 ? (
-        <p>Корзина пуста</p>
+        <p className="pusto">Корзина пуста(((</p>
       ) : (
-        <>
-          <button
-            onClick={clearCart}
-            style={{
-              marginBottom: "15px",
-              padding: "8px 15px",
-              backgroundColor: "red",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Очистить корзину
-          </button>
-
-          <ul>
+        <div className="cart-content">
+          <div className="cart-items">
             {items.map((item) => (
-              <li
-                key={item.id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: "10px",
-                  padding: "10px",
-                  border: "1px solid gray",
-                  borderRadius: "8px",
-                }}
-              >
-                <div>
-                  <strong>{item.title}</strong> – {item.price} ₽ <br />
-                  Кол-во: {item.quantity}
+              <div key={item.id} className="cart-item">
+                <strong className="title">{item.title}</strong>
+
+                <div className="rightside">
+                  <span className="cart-item-price">{item.price * item.quantity} ₽</span>
+
+                  <div className="cart-quantity-controls">
+                    <button onClick={() => updateQuantity(item.dishId, item.quantity - 1)}>−</button>
+                    <span className="cena">{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.dishId, item.quantity + 1)}>+</button>
+                  </div>
                 </div>
-                <div>
-                  <button onClick={() => updateQuantity(item.dishId, item.quantity - 1)}>
-                    -
-                  </button>
-                  <button
-                    onClick={() => updateQuantity(item.dishId, item.quantity + 1)}
-                    style={{ marginLeft: "5px" }}
-                  >
-                    +
-                  </button>
-                </div>
-              </li>
+              </div>
             ))}
-          </ul>
-        </>
+          </div>
+
+          <div className="cart-total">
+            <div onClick={clearCart} className="cart-clear-btn">
+              Очистить корзину
+            </div>
+
+            <div className="itog">
+              Итог: <strong>{total} ₽</strong>
+              
+            <button
+              className="cart-checkout-btn"
+              onClick={() => navigate("/booking", { state: { total } })}
+            >
+              ПЕРЕЙТИ К ОФОРМЛЕНИЮ
+            </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

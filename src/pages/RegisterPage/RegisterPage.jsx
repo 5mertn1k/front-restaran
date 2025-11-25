@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./RegisterPage.css";
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -37,25 +38,19 @@ export default function RegisterPage() {
   };
 
   return (
-    <div style={{ color: "white", display: "flex", justifyContent: "center" }}>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          background: "#222",
-          padding: "20px",
-          borderRadius: "8px",
-          width: "300px",
-        }}
-      >
+    <div className="register-page">
+      <form className="register-form" onSubmit={handleSubmit}>
         <h3>Регистрация пользователя</h3>
         <input name="lastName" placeholder="Фамилия*" onChange={handleChange} required />
         <input name="firstName" placeholder="Имя*" onChange={handleChange} required />
         <input name="middleName" placeholder="Отчество" onChange={handleChange} />
         <input name="birthDate" type="date" placeholder="Дата рождения*" onChange={handleChange} required />
-        <input name="username" placeholder="Логин (телефон)*" onChange={handleChange} required />
+        <input name="username" placeholder="Логин (номер телефона)*" onChange={handleChange} required />
         <input name="password" type="password" placeholder="Пароль*" onChange={handleChange} required />
         <input name="repeatPassword" type="password" placeholder="Повтор пароля*" onChange={handleChange} required />
-        <button type="submit">Зарегистрироваться</button>
+        <div className="btn-wrapper">
+          <button type="submit">Зарегистрироваться</button>
+        </div>
       </form>
     </div>
   );

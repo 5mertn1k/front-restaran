@@ -1,35 +1,16 @@
 import { useState, useEffect } from "react";
 import "./DishCard.css";
 
-export default function DishCard({ dish, onChange }) {
-  const [count, setCount] = useState(0);
+export default function DishCard({ dish,quantity, onChange }) {
+  const [count, setCount] = useState(quantity);
 
-  // подтягиваем сохранённое количество из localStorage
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart") || "{}");
-    if (savedCart[dish.id]) {
-      setCount(savedCart[dish.id]);
-    }
-  }, [dish.id]);
+    setCount(quantity);
+  }, [quantity]);
 
-  // сохраняем в localStorage при каждом изменении
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart") || "{}");
-    if (count > 0) {
-      savedCart[dish.id] = count;
-    } else {
-      delete savedCart[dish.id];
-    }
-    localStorage.setItem("cart", JSON.stringify(savedCart));
-
-    // уведомляем родителя (CategoryPage)
-    if (onChange) {
-      onChange(dish.id, count);
-    }
-  }, [count, dish.id, onChange]);
-
-  const handleAdd = () => setCount(count + 1);
-  const handleRemove = () => count > 0 && setCount(count - 1);
+    onChange(dish.id, count);
+  }, [count]);
 
   return (
     <div className="dish-card">
@@ -42,14 +23,14 @@ export default function DishCard({ dish, onChange }) {
       </div>
       <div className="dish-actions">
         {count === 0 ? (
-          <button className="price-btn" onClick={handleAdd}>
+          <button className="price-btn" onClick={() => setCount(1)}>
             {dish.price} ₽
           </button>
         ) : (
           <div className="counter">
-            <button onClick={handleRemove} >-</button>
+            <button onClick={() => setCount(Math.max(0, count - 1))} >-</button>
             <span className="count">{count}</span>
-            <button onClick={handleAdd} >+</button>
+            <button onClick={() => setCount(count + 1)} >+</button>
           </div>
           )}
       </div>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./LoginPage.css";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -6,7 +8,6 @@ export default function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     const res = await fetch("http://localhost:8080/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -24,19 +25,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ color: "white", display: "flex", justifyContent: "center" }}>
-      <form
-        onSubmit={handleLogin}
-        style={{
-          background: "#222",
-          padding: "20px",
-          borderRadius: "8px",
-          width: "300px",
-        }}
-      >
+    <div className="login-page">
+      <form className="login-form" onSubmit={handleLogin}>
         <h3>Вход в систему</h3>
         <input
-          placeholder="Логин"
+          placeholder="Логин (номер телефона)"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -50,10 +43,7 @@ export default function LoginPage() {
         />
         <button type="submit">Войти</button>
         <p>
-          Нет аккаунта?{" "}
-          <a href="/register" style={{ color: "orange" }}>
-            Зарегистрироваться
-          </a>
+          Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
         </p>
       </form>
     </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./ProfilePage.css";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
@@ -9,41 +10,30 @@ export default function ProfilePage() {
   }, []);
 
   if (!user) {
-    return <p style={{ color: "white", textAlign: "center" }}>Загрузка...</p>;
+    return <p className="profile-loading">Загрузка...</p>;
   }
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("cart");
     window.location.href = "/login";
   };
 
   return (
-    <div
-      style={{
-        color: "white",
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "50px",
-      }}
-    >
-      <div
-        style={{
-          background: "#222",
-          padding: "20px",
-          borderRadius: "8px",
-          width: "300px",
-          textAlign: "center",
-        }}
-      >
-        <h3>Личные данные</h3>
+    <div className="profile-wrapper">
+      <div className="profile-card">
+        <h3 className="profile-title">Личные данные</h3>
+
         <input value={user.lastName} readOnly />
         <input value={user.firstName} readOnly />
         <input value={user.middleName || ""} readOnly />
         <input value={user.birthDate} readOnly />
         <input value={user.username} readOnly />
         <input type="password" value={user.password} readOnly />
-        <button onClick={handleLogout}>Выйти из профиля</button>
+        <div className="pravoknopka">
+          <button className="profile-logout" onClick={handleLogout}>
+            Выйти из профиля
+          </button>
+        </div>
       </div>
     </div>
   );
