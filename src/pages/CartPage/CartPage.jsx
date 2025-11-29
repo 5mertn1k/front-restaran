@@ -10,7 +10,7 @@ export default function CartPage() {
 
   const loadCart = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/api/cart/${sessionId}`);
+      const res = await fetch(`http://localhost:8083/api/cart/${sessionId}`);
       if (!res.ok) throw new Error("Ошибка загрузки корзины");
 
       const data = await res.json();
@@ -25,27 +25,39 @@ export default function CartPage() {
   }, []);
 
   const updateQuantity = async (dishId, newQty) => {
-    try {
-      if (newQty < 1) {
-        await fetch(`http://localhost:8080/api/cart/${sessionId}/remove/${dishId}`, {
-          method: "DELETE",
-        });
-      } else {
-        await fetch(
-          `http://localhost:8080/api/cart/${sessionId}/set?dishId=${dishId}&quantity=${newQty}`,
-          { method: "POST" }
-        );
-      }
+  try {
+    const item = items.find(i => i.dishId === dishId);
 
-      loadCart();
-    } catch (e) {
-      console.error("Ошибка обновления корзины:", e);
+    if (!item) {
+      console.error("Не найден элемент корзины с dishId =", dishId);
+      return;
     }
-  };
+
+    if (newQty < 1) {
+      await fetch(
+        `http://localhost:8083/api/cart/${sessionId}/remove/${dishId}`,
+        { method: "DELETE" }
+      );
+    } else {
+      await fetch(
+        `http://localhost:8083/api/cart/${sessionId}/set?dishId=${dishId}&title=${encodeURIComponent(
+          item.title
+        )}&price=${item.price}&quantity=${newQty}`,
+        { method: "POST" }
+      );
+    }
+
+    loadCart();
+  } catch (e) {
+    console.error("Ошибка обновления корзины:", e);
+  }
+};
+
+
 
   const clearCart = async () => {
     try {
-      await fetch(`http://localhost:8080/api/cart/${sessionId}/clear`, {
+      await fetch(`http://localhost:8083/api/cart/${sessionId}/clear`, {
         method: "DELETE",
       });
 

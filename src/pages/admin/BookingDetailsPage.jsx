@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./BookingDetailsPage.css";
 
 export default function BookingDetailsPage() {
   const { id } = useParams();
@@ -10,7 +11,7 @@ export default function BookingDetailsPage() {
   }, []);
 
   const load = async () => {
-    const res = await fetch(`http://localhost:8080/api/admin/bookings/${id}`);
+    const res = await fetch(`http://localhost:8084/api/admin/bookings/${id}`);
     const data = await res.json();
     setBooking(data);
   };
@@ -31,7 +32,7 @@ export default function BookingDetailsPage() {
         </div>
       ))}
 
-      <h2>Итого: {booking.total} ₽</h2>
+      <h2>Итого: <strong>{booking.total} ₽</strong></h2>
     </div>
   );
 }

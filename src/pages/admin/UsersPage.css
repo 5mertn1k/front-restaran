@@ -1,0 +1,89 @@
+
+.admin-table-wrapper {
+  border: 2px solid #aa8619;
+  background: #44391b;
+  border-radius: 6px;
+}
+
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  border-bottom: 1px solid #f1b400;
+  padding: 12px 24px;
+  text-align: left;
+}
+
+.admin-table th {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+
+
+
+
+.context-menu1 {
+  position: fixed;
+  background: #44391b;
+  border: 1px solid #aa8619;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-yellow {
+  background: #44391b;
+  color: #ffffff;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-red {
+  background: #44391b;
+  color: rgb(255, 0, 0);
+  border: none;
+  font-size: 1.5rem;
+  max-width: 4rem;
+  cursor: pointer;
+}
+
+.btn-gray {
+  color: #000000;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  max-width: 4rem;
+}
+
+
+
+.role-menu {
+  position: fixed;
+  background: #44391b;
+  border: 1px solid #f1b400;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  z-index: 99999;
+}
+
+.role-item {
+  font-size: 1rem;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.role-item:hover {
+  background: #f1b400;
+  color: black;
+}

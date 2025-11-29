@@ -11,7 +11,7 @@ export default function DrinkRow({ drink, quantity, onChange }) {
 
   // отправляем изменения наверх
   useEffect(() => {
-    if (onChange) onChange(drink.id, count);
+    if (onChange) onChange(drink.id, drink.title, drink.price, count);
   }, [count]);
 
   return (

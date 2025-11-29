@@ -31,13 +31,14 @@ export default function BookingPage() {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/api/bookings?sessionId=${sessionId}`,
+        `http://localhost:8084/api/bookings?sessionId=${sessionId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             lastName: form.lastName,
             firstName: form.firstName,
+            middleName: user?.middleName || null,
             guests: String(form.guests),
             date: form.date,
             time: form.time,

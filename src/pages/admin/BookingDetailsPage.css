@@ -1,0 +1,30 @@
+.booking-details {
+  color: white;
+  padding: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.booking-details h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.booking-details h3 {
+  font-size: 20px;
+  color: #f1b400;
+  margin-bottom: 15px;
+}
+
+.booking-details p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.booking-details div {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.booking-details strong {
+  color: #f1b400;
+}

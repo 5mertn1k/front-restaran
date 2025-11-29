@@ -1,0 +1,35 @@
+.admin-layout {
+  background: #161b21;
+  min-height: 100vh;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  gap: 1rem;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+  padding: 1.5rem 2rem;
+}
+
+
+
+.admin-nav a {
+  color: #ffffff;
+  font-size: 2rem;
+  text-decoration: none;
+  font-weight: 400;
+  margin-left: 1rem;
+  
+}
+
+.admin-nav a.active {
+  text-decoration:none ;
+  color: #ECAC0C;
+}
+
+.admin-content {
+  padding: 40px;
+}

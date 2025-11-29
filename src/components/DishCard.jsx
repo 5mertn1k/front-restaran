@@ -9,7 +9,7 @@ export default function DishCard({ dish,quantity, onChange }) {
   }, [quantity]);
 
   useEffect(() => {
-    onChange(dish.id, count);
+    onChange(dish.id, dish.title, dish.price, count);
   }, [count]);
 
   return (

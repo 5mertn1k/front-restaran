@@ -13,7 +13,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import BookingPage from "./pages/BookingPage/BookingPage";
 
-import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLayout from "./components/AdminLayout/AdminLayout";
 import UsersPage from "./pages/admin/UsersPage";
 import Bookings from "./pages/admin/AdminBookings";
 import AdminBookingDetails from "./pages/admin/BookingDetailsPage";

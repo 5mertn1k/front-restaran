@@ -12,7 +12,7 @@ export default function CategoryPage() {
   const sessionId = getSessionId();
 
   const loadCart = async () => {
-    const res = await fetch(`http://localhost:8080/api/cart/${sessionId}`);
+    const res = await fetch(`http://localhost:8083/api/cart/${sessionId}`);
     const data = await res.json();
 
     const map = {};
@@ -24,7 +24,7 @@ export default function CategoryPage() {
   };
 
   const loadMenu = async () => {
-    const res = await fetch(`/api/menu/${slug}`);
+    const res = await fetch(`http://localhost:8081/api/menu/${slug}`);
     const data = await res.json();
     setDishes(Array.isArray(data) ? data : []);
   };
@@ -34,15 +34,17 @@ export default function CategoryPage() {
     loadCart();
   }, [slug]);
 
-  const handleQuantityChange = async (dishId, quantity) => {
+  const handleQuantityChange = async (dishId, title, price, quantity) => {
     if (quantity <= 0) {
       await fetch(
-        `http://localhost:8080/api/cart/${sessionId}/remove/${dishId}`,
+        `http://localhost:8083/api/cart/${sessionId}/remove/${dishId}`,
         { method: "DELETE" }
       );
     } else {
       await fetch(
-        `http://localhost:8080/api/cart/${sessionId}/set?dishId=${dishId}&quantity=${quantity}`,
+        `http://localhost:8083/api/cart/${sessionId}/set?dishId=${dishId}&title=${encodeURIComponent(
+          title
+        )}&price=${price}&quantity=${quantity}`,
         { method: "POST" }
       );
     }
