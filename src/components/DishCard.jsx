@@ -1,40 +1,50 @@
 import { useState, useEffect } from "react";
 import "./DishCard.css";
 
-export default function DishCard({ dish,quantity, onChange }) {
+export default function DishCard({ dish, quantity, onChange, adminMode }) {
   const [count, setCount] = useState(quantity);
 
   useEffect(() => {
     setCount(quantity);
   }, [quantity]);
 
-  useEffect(() => {
-    onChange(dish.id, dish.title, dish.price, count);
-  }, [count]);
+  const inc = () => {
+    const next = count + 1;
+    setCount(next);
+    onChange(dish.id, dish.title, dish.price, next);
+  };
+
+  const dec = () => {
+    const next = Math.max(0, count - 1);
+    setCount(next);
+    onChange(dish.id, dish.title, dish.price, next);
+  };
 
   return (
     <div className="dish-card">
       <div className="dish-info">
         <h3>{dish.title}</h3>
         <p>Состав: {dish.description}</p>
+
+        {/* ✅ КБЖУ ВОЗВРАЩЕНО */}
         <small className="call">
           КБЖУ: {dish.kcal}/{dish.proteins}/{dish.fats}/{dish.carbs}
         </small>
       </div>
+
       <div className="dish-actions">
         {count === 0 ? (
-          <button className="price-btn" onClick={() => setCount(1)}>
+          <button className="price-btn" onClick={inc}>
             {dish.price} ₽
           </button>
         ) : (
           <div className="counter">
-            <button onClick={() => setCount(Math.max(0, count - 1))} >-</button>
+            <button onClick={dec}>−</button>
             <span className="count">{count}</span>
-            <button onClick={() => setCount(count + 1)} >+</button>
+            <button onClick={inc}>+</button>
           </div>
-          )}
+        )}
       </div>
-
     </div>
   );
 }

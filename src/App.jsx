@@ -17,6 +17,7 @@ import AdminLayout from "./components/AdminLayout/AdminLayout";
 import UsersPage from "./pages/admin/UsersPage";
 import Bookings from "./pages/admin/AdminBookings";
 import AdminBookingDetails from "./pages/admin/BookingDetailsPage";
+import AdminRoute from "./utils/AdminRoute";
 
 export default function App() {
   return (
@@ -49,7 +50,11 @@ export default function App() {
           />
 
           {/* ---------- ADMIN LAYOUT ---------- */}
-          <Route path="/admin/*" element={<AdminLayout />}>
+          <Route path="/admin/*" element={
+                    <AdminRoute>
+                      <AdminLayout />
+                    </AdminRoute>
+                  }>
             <Route path="users" element={<UsersPage />} />
             <Route path="bookings" element={<Bookings />} />
             <Route path="bookings/:id" element={<AdminBookingDetails />} />

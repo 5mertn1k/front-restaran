@@ -12,7 +12,19 @@ export default function BookingsPage() {
   }, []);
 
   const loadBookings = async () => {
-    const res = await fetch("http://localhost:8084/api/admin/bookings");
+    const token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:8084/api/admin/bookings", {
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    });
+
+    if (!res.ok) {
+      alert("Ошибка загрузки броней!");
+      return;
+    }
+
     const data = await res.json();
     setBookings(data);
   };
@@ -20,8 +32,13 @@ export default function BookingsPage() {
   const deleteBooking = async () => {
     if (!selectedBooking) return;
 
+    const token = localStorage.getItem("token");
+
     await fetch(`http://localhost:8084/api/admin/bookings/${selectedBooking.id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        "Authorization": "Bearer " + token
+      }
     });
 
     setSelectedBooking(null);
@@ -30,15 +47,11 @@ export default function BookingsPage() {
 
   const handleRowClick = (event, booking) => {
     setSelectedBooking(booking);
-    setMenuPos({
-      x: event.clientX + 10,
-      y: event.clientY + 10
-    });
+    setMenuPos({ x: event.clientX + 10, y: event.clientY + 10 });
   };
 
   return (
     <div className="bookings-wrapper">
-
       <div className="bookings-table-wrapper">
         <table className="bookings-table">
           <thead>
@@ -54,12 +67,8 @@ export default function BookingsPage() {
 
           <tbody>
             {bookings.map(b => (
-              <tr
-                key={b.id}
-                onClick={(e) => handleRowClick(e, b)}
-                
-              >
-                <td>{b.lastName} {b.firstName} {b.middleName} </td>
+              <tr key={b.id} onClick={(e) => handleRowClick(e, b)}>
+                <td>{b.lastName} {b.firstName} {b.middleName}</td>
                 <td>{b.date}</td>
                 <td>{b.timeStart}</td>
                 <td>{b.timeEnd}</td>
@@ -72,14 +81,8 @@ export default function BookingsPage() {
       </div>
 
       {selectedBooking && (
-        <div
-          className="context-menu"
-          style={{ top: menuPos.y, left: menuPos.x }}
-        >
-          <Link
-            to={`/admin/bookings/${selectedBooking.id}`}
-            className="btn-yellow"
-          >
+        <div className="context-menu" style={{ top: menuPos.y, left: menuPos.x }}>
+          <Link to={`/admin/bookings/${selectedBooking.id}`} className="btn-yellow">
             Детали
           </Link>
 
@@ -87,10 +90,7 @@ export default function BookingsPage() {
             Удалить
           </div>
 
-          <div
-            className="btn-gray"
-            onClick={() => setSelectedBooking(null)}
-          >
+          <div className="btn-gray" onClick={() => setSelectedBooking(null)}>
             Закрыть
           </div>
         </div>
