@@ -71,6 +71,7 @@ export default function Header() {
                 isActive ? "profile-link active" : "profile-link"
               }
             >
+              <span className="profile-icon"/>
               {user.firstName}
             </NavLink>
           ) : (
@@ -80,6 +81,7 @@ export default function Header() {
                 isActive ? "profile-link active" : "profile-link"
               }
             >
+              <span className="profile-icon"/>
               Профиль
             </NavLink>
           )}
