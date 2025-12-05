@@ -15,7 +15,7 @@ export default function CategoryPage() {
   const [cart, setCart] = useState({});
   const sessionId = getSessionId();
 
-  // ================== ЗАГРУЗКА ==================
+  
 
   const loadMenu = async () => {
     const res = await fetch(`http://localhost:8081/api/menu/${slug}`);
@@ -24,7 +24,7 @@ export default function CategoryPage() {
   };
 
   const loadCart = async () => {
-    // ✅ АДМИН — грузим блюда ИЗ БРОНИ
+    
     if (isAdminMode) {
       const res = await fetch(`http://localhost:8084/api/admin/bookings/${bookingId}`);
       const data = await res.json();
@@ -38,7 +38,7 @@ export default function CategoryPage() {
       return;
     }
 
-    // ✅ ОБЫЧНЫЙ ПОЛЬЗОВАТЕЛЬ — грузим из корзины
+    
     const res = await fetch(`http://localhost:8083/api/cart/${sessionId}`);
     const data = await res.json();
 
@@ -56,14 +56,14 @@ export default function CategoryPage() {
     loadCart();
   }, [slug]);
 
-  // ================== ИЗМЕНЕНИЕ КОЛИЧЕСТВА ==================
+  
 
   const handleQuantityChange = async (dishId, title, price, quantity) => {
 
-    // ✅ ========== АДМИН ==========
+    
     if (isAdminMode) {
 
-      // сначала берём ТЕКУЩИЙ заказ
+      
       const res = await fetch(`http://localhost:8084/api/admin/bookings/${bookingId}`);
       const booking = await res.json();
 
@@ -75,7 +75,7 @@ export default function CategoryPage() {
         )
         .filter(i => i.quantity > 0);
 
-      // если блюда ещё не было — добавляем
+      
       if (!items.find(i => i.dishId === dishId) && quantity > 0) {
         items.push({ dishId, quantity });
       }
@@ -90,7 +90,7 @@ export default function CategoryPage() {
       return;
     }
 
-    // ✅ ========== ОБЫЧНЫЙ ПОЛЬЗОВАТЕЛЬ ==========
+    
     if (quantity <= 0) {
       await fetch(`http://localhost:8083/api/cart/${sessionId}/remove/${dishId}`, {
         method: "DELETE"
@@ -109,7 +109,7 @@ export default function CategoryPage() {
 
 
 
-  // ================== ГРУППИРОВКА НАПИТКОВ ==================
+  
 
   const isDrinks = slug === "drinks";
 
@@ -123,7 +123,7 @@ export default function CategoryPage() {
     ? dishes.filter((d) => !teaList.includes(d) && !coffeeList.includes(d))
     : [];
 
-  // ================== UI ==================
+
 
   return (
     <div className={`category-page ${isDrinks ? "drinks-layout" : ""}`}>
@@ -138,7 +138,7 @@ export default function CategoryPage() {
             dish={dish}
             quantity={cart[dish.id] || 0}
             onChange={handleQuantityChange}
-            adminMode={isAdminMode}
+            
           />
         ))
       ) : (
@@ -150,7 +150,7 @@ export default function CategoryPage() {
                 drink={d}
                 quantity={cart[d.id] || 0}
                 onChange={handleQuantityChange}
-                adminMode={isAdminMode}
+                
               />
             ))}
           </div>
@@ -162,7 +162,7 @@ export default function CategoryPage() {
                 drink={d}
                 quantity={cart[d.id] || 0}
                 onChange={handleQuantityChange}
-                adminMode={isAdminMode}
+                
               />
             ))}
           </div>
@@ -174,7 +174,7 @@ export default function CategoryPage() {
                 drink={d}
                 quantity={cart[d.id] || 0}
                 onChange={handleQuantityChange}
-                adminMode={isAdminMode}
+                
               />
             ))}
           </div>

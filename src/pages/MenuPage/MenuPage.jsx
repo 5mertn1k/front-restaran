@@ -29,7 +29,7 @@ export default function MenuPage() {
         {categories.map((cat, index) => (
           <Link
             key={index}
-            to={`/menu/${cat.slug}${suffix}`}   // ✅ ВАЖНО
+            to={`/menu/${cat.slug}${suffix}`}   
             className="menu-card"
           >
             <img src={cat.img} alt={cat.alt} />

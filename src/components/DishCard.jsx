@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./DishCard.css";
 
-export default function DishCard({ dish, quantity, onChange, adminMode }) {
+export default function DishCard({ dish, quantity, onChange }) {
   const [count, setCount] = useState(quantity);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function DishCard({ dish, quantity, onChange, adminMode }) {
         <h3>{dish.title}</h3>
         <p>Состав: {dish.description}</p>
 
-        {/* ✅ КБЖУ ВОЗВРАЩЕНО */}
+        
         <small className="call">
           КБЖУ: {dish.kcal}/{dish.proteins}/{dish.fats}/{dish.carbs}
         </small>

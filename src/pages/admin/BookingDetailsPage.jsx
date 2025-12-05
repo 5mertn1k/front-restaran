@@ -42,7 +42,7 @@
         })),
       };
 
-      // ✅ ВАЖНО: ТУТ ДОЛЖЕН БЫТЬ PUT, А НЕ POST
+      
       await fetch(`http://localhost:8084/api/admin/bookings/${id}/items`, {
         method: "PUT",
         headers: {

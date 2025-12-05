@@ -25,7 +25,7 @@ export default function App() {
       <div className="app"> 
         <Routes>
 
-          {/* ---------- USER LAYOUT ---------- */}
+          
           <Route path="/*"
             element={
               <>
@@ -49,7 +49,7 @@ export default function App() {
             }
           />
 
-          {/* ---------- ADMIN LAYOUT ---------- */}
+          
           <Route path="/admin/*" element={
                     <AdminRoute>
                       <AdminLayout />
